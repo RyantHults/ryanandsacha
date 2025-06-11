@@ -1,0 +1,356 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(45deg, #f4f1e8 0%, #e8dcc0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            opacity: .03;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            padding-bottom: 10px;
+            position: relative;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .container::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(assets/background/parchment2t.png);
+            background-repeat: repeat;
+            background-size: 256px;
+            border: 40px solid transparent;
+            border-image: url(assets/border/background_frame_green2.png) 160;
+            border-image-repeat: round;
+            border-radius: 20px;   
+            opacity: .6;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            opacity: .9;
+        }
+
+        .couple-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+        }
+
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #4f5e0e;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .wedding-date {
+            font-size: 1.8rem;
+            color: #707922;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .invitation-text {
+            font-size: 1.3rem;
+            color: #414617;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .section {
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #4f5e0e;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #707922, transparent);
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .event {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .event h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #4f5e0e;
+            margin-bottom: 15px;
+        }
+
+        .event p {
+            color: #414617;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .registry-section {
+            text-align: center;
+        }
+
+        .registry-text {
+            color: #414617; 
+            font-size: 1.2rem; 
+            line-height: 1.6; 
+            margin-bottom: 20px;
+        }
+
+        .registry-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-top: 20px;
+        }
+
+        .registry-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #b8941f, #d4af37);
+        }
+
+        .rsvp-text {
+            text-align: center; 
+            color: #414617; 
+            font-size: 1.2rem; 
+            margin-bottom: 30px;
+        }
+
+        .rsvp-form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4f5e0e;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4f5e0e, #5f7922);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55 0.3);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55 0.4);
+            background: linear-gradient(135deg, #5f7922, #4f5e0e);
+        }
+
+        .decorative-divider {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .decorative-divider::before {
+            content: '❦';
+            font-size: 2rem;
+            color: #d4af37;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .decorative-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            z-index: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 20px;
+                padding: 30px;
+            }
+
+            .container::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: url(assets/background/parchment2t.png);
+                background-repeat: repeat;
+                background-size: 256px;
+                border: 30px solid transparent;
+                border-image: url(assets/border/background_frame_padding.png) 160;
+                border-image-repeat: round;
+                border-radius: 20px;   
+                opacity: .6;
+            }
+
+            .couple-names {
+                font-size: 2.5rem;
+            }
+
+            .wedding-date {
+                font-size: 1.4rem;
+            }
+
+            .invitation-text {
+                font-size: 1.1rem;
+            }
+
+            .event-details {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .side-borders {
+                width: 20px;
+            }
+
+            .section {
+                padding: 20px;
+                margin: 30px 0px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .couple-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .couple-names {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+        }

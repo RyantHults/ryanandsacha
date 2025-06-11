@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan & Sascha - Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="assets/header-photo/couple.png?w=400&h=400&fit=crop&crop=faces" alt="Ryan & Sascha" class="couple-photo">
+            <h1 class="couple-names">Ryan & Sascha</h1>
+            <p class="wedding-date">November 18th, 2025</p>
+            <p class="invitation-text">Together with their families, request the pleasure of your company at their wedding celebration</p>
+        </header>
+
+        <div class="decorative-divider"></div>
+
+        <section class="section">
+            <h2>Ceremony & Reception</h2>
+            <div class="event-details">
+                <div class="event">
+                    <h3>Wedding Ceremony</h3>
+                    <p><strong>5:00 PM</strong></p>
+                    <p>Arrowwood Events</p>
+                    <p>545 Loma Linda Rd</p>
+                    <p>Palmer, TX 75152</p>
+                </div>
+                <div class="event">
+                    <h3>Reception</h3>
+                    <p><strong>6:00 PM</strong></p>
+                    <p>Arrowwood Events</p>
+                    <p>545 Loma Linda Rd</p>
+                    <p>Palmer, TX 75152</p>
+                    <p><em>Dinner & Dancing to Follow</em></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="decorative-divider"></div>
+
+        <section class="section registry-section">
+            <h2>Wedding Registry</h2>
+            <p class="registry-text">
+                Instead of a traditional registry, we've decided to setup a Honeyfund.  
+                This allows people to directly contribute to specific funds, such as our honeymoon, future europe moving expenses, and more.
+            </p>
+            <a href="https://www.honeyfund.com/site/hults-durbin-11-18-2025" class="registry-link">View Our Honeyfund</a>
+        </section>
+
+        <div class="decorative-divider"></div>
+
+        <section class="section">
+            <h2>RSVP</h2>
+            <p class="rsvp-text">
+                Please respond by September 18th, 2025
+            </p>
+            <form class="rsvp-form" id="rsvpForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="attendance">Will you attend? *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes, I'll be there!</option>
+                            <option value="no">Sorry, can't make it</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guestCount">Number of Guests</label>
+                        <select id="guestCount" name="guestCount">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dietaryRestrictions">Dietary Restrictions or Special Requests</label>
+                    <textarea id="dietaryRestrictions" name="dietaryRestrictions" placeholder="Please let us know about any allergies, dietary restrictions, or special accommodations needed..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message for the Couple</label>
+                    <textarea id="message" name="message" placeholder="Share your well wishes, favorite memories, or excitement for our special day..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send RSVP</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email || !data.attendance) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Prepare data for Google Sheets
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Replace with your Google Apps Script web app URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbw2GNTk0Ypk7dIUoufBrE4R7ueVGMllOBoEvEyDSfS4hhcRtO_aOXp-Ha5I5XzO-S0/exec';
+            
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(result => {
+                if (result.result === 'success') {
+                    alert('Thank you for your RSVP! We can\'t wait to celebrate with you.');
+                    this.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Sorry, there was an error submitting your RSVP. Please try again.');
+                alert(`error: ${error}`);
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+        // Add subtle animations on scroll
+        function animateOnScroll() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize animations
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
